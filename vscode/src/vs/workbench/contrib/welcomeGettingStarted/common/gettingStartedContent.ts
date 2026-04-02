@@ -251,20 +251,34 @@ function createCopilotSetupStep(id: string, button: string, when: string, includ
 export const walkthroughs: GettingStartedWalkthroughContent = [
 	{
 		id: 'Setup',
-		title: localize('gettingStarted.setup.title', "Get started with VS Code"),
-		description: localize('gettingStarted.setup.description', "Customize your editor, learn the basics, and start coding"),
+		title: localize('gettingStarted.setup.title', "Welcome to Sky"),
+		description: localize('gettingStarted.setup.description', "Your AI-powered workspace. Chat, code, automate — all in one app."),
 		isFeatured: true,
 		icon: setupIcon,
 		when: '!isWeb',
-		walkthroughPageTitle: localize('gettingStarted.setup.walkthroughPageTitle', 'Setup VS Code'),
+		walkthroughPageTitle: localize('gettingStarted.setup.walkthroughPageTitle', 'Setup Sky'),
 		next: 'Beginner',
 		content: {
 			type: 'steps',
 			steps: [
-				createCopilotSetupStep('CopilotSetupAnonymous', CopilotAnonymousButton, 'chatAnonymous && !chatSetupInstalled', true),
-				createCopilotSetupStep('CopilotSetupSignedOut', CopilotSignedOutButton, 'chatEntitlementSignedOut && !chatAnonymous', false),
-				createCopilotSetupStep('CopilotSetupComplete', CopilotCompleteButton, 'chatSetupInstalled && !chatSetupDisabled && (chatAnonymous || chatPlanPro || chatPlanProPlus || chatPlanBusiness || chatPlanEnterprise || chatPlanFree)', false),
-				createCopilotSetupStep('CopilotSetupSignedIn', CopilotSignedInButton, '!chatEntitlementSignedOut && (!chatSetupInstalled || chatSetupDisabled || chatPlanCanSignUp)', false),
+				{
+					id: 'skyLogin',
+					title: localize('gettingStarted.skyLogin.title', "Sign in to Sky"),
+					description: localize('gettingStarted.skyLogin.description', "Sign in with your Sky account to unlock AI chat, channels, marketplace, and all premium features.\n[Sign In](command:sky-ai.signIn)"),
+					media: { type: 'markdown', path: 'empty' },
+				},
+				{
+					id: 'skyChat',
+					title: localize('gettingStarted.skyChat.title', "Chat with Sky AI"),
+					description: localize('gettingStarted.skyChat.description', "Open the Sky AI chat to ask questions, generate code, automate tasks, and more. GPT, Claude, and Gemini are included in your plan.\n[Open Sky Chat](command:sky-ai.openChat)"),
+					media: { type: 'markdown', path: 'empty' },
+				},
+				{
+					id: 'skyMarketplace',
+					title: localize('gettingStarted.skyMarketplace.title', "Explore the Marketplace"),
+					description: localize('gettingStarted.skyMarketplace.description', "Discover and install skills that extend what Sky can do — from browsing the web to managing your calendar, controlling apps, and more.\n[Open Marketplace](command:sky-ai.openMarketplace)"),
+					media: { type: 'markdown', path: 'empty' },
+				},
 				{
 					id: 'pickColorTheme',
 					title: localize('gettingStarted.pickColor.title', "Choose your theme"),
@@ -276,10 +290,10 @@ export const walkthroughs: GettingStartedWalkthroughContent = [
 					media: { type: 'markdown', path: 'theme_picker', }
 				},
 				{
-					id: 'videoTutorial',
-					title: localize('gettingStarted.videoTutorial.title', "Watch video tutorials"),
-					description: localize('gettingStarted.videoTutorial.description.interpolated', "Watch the first in a series of short & practical video tutorials for VS Code's key features.\n{0}", Button(localize('watch', "Watch Tutorial"), 'https://aka.ms/vscode-getting-started-video')),
-					media: { type: 'svg', altText: 'VS Code Settings', path: 'learn.svg' },
+					id: 'skyDocs',
+					title: localize('gettingStarted.skyDocs.title', "Learn more"),
+					description: localize('gettingStarted.skyDocs.description', "Visit the docs to learn about channels (WhatsApp, Telegram, Discord), SkyCode editor, automation, and everything Sky can do.\n[Open Documentation](https://skyrunapp.com/docs)"),
+					media: { type: 'markdown', path: 'empty' },
 				}
 			]
 		}
@@ -490,7 +504,7 @@ export const walkthroughs: GettingStartedWalkthroughContent = [
 				{
 					id: 'settingsAndSync',
 					title: localize('gettingStarted.settings.title', "Tune your settings"),
-					description: localize('gettingStarted.settingsAndSync.description.interpolated', "Customize every aspect of VS Code and [sync](command:workbench.userDataSync.actions.turnOn) customizations across devices.\n{0}", Button(localize('tweakSettings', "Open Settings"), 'command:toSide:workbench.action.openSettings')),
+					description: localize('gettingStarted.settingsAndSync.description.interpolated', "Customize every aspect of Sky and [sync](command:workbench.userDataSync.actions.turnOn) customizations across devices.\n{0}", Button(localize('tweakSettings', "Open Settings"), 'command:toSide:workbench.action.openSettings')),
 					when: 'workspacePlatform != \'webworker\' && syncStatus != uninitialized',
 					completionEvents: ['onEvent:sync-enabled'],
 					media: {
@@ -500,7 +514,7 @@ export const walkthroughs: GettingStartedWalkthroughContent = [
 				{
 					id: 'extensions',
 					title: localize('gettingStarted.extensions.title', "Code with extensions"),
-					description: localize('gettingStarted.extensions.description.interpolated', "Extensions are VS Code's power-ups. They range from handy productivity hacks, expanding out-of-the-box features, to adding completely new capabilities.\n{0}", Button(localize('browsePopular', "Browse Popular Extensions"), 'command:workbench.extensions.action.showPopularExtensions')),
+					description: localize('gettingStarted.extensions.description.interpolated', "Extensions are Sky's power-ups. They range from handy productivity hacks, expanding out-of-the-box features, to adding completely new capabilities.\n{0}", Button(localize('browsePopular', "Browse Popular Extensions"), 'command:workbench.extensions.action.showPopularExtensions')),
 					when: 'workspacePlatform != \'webworker\'',
 					media: {
 						type: 'svg', altText: 'VS Code extension marketplace with featured language extensions', path: 'extensions.svg'
